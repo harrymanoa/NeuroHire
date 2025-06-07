@@ -1,236 +1,125 @@
-# AI Mock Interview Platform
+# NeuroHire: AI-Driven Job Interview Preparation Platform 🎤🤖
 
-A modern, AI-powered platform to help users prepare for job interviews through realistic mock interviews. The platform leverages voice-based interactions, AI-generated questions, and detailed feedback to enhance interview skills. Built with a scalable monorepo architecture, it supports multi-attempt tracking, analytics, and PDF exports.
+![NeuroHire](https://img.shields.io/badge/NeuroHire-AI%20Interview%20Prep-blue)
+
+Welcome to **NeuroHire**, a powerful platform designed to enhance your job interview preparation through AI-driven mock interviews. Our system leverages advanced technologies to simulate real interview scenarios, providing you with invaluable practice and feedback.
 
 ## Table of Contents
 
 - [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-  - [Running the Application](#running-the-application)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
 - [Usage](#usage)
-- [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
 - [License](#license)
+- [Contact](#contact)
+- [Releases](#releases)
 
 ## Features
 
-- **User Authentication**: Secure email/password and Google OAuth2 login with JWT-based access and refresh tokens.
-- **Job Profile Management**: Create, edit, and delete job profiles with details like role, company, skills, and experience level.
-- **AI-Powered Question Generation**: Generate 8–10 technical and behavioral questions using Google Gemini API (with OpenAI fallback).
-- **Real-Time Voice Interviews**: Conduct mock interviews with Vapi.ai, presenting questions one at a time and capturing live transcriptions.
-- **Multi-Attempt Tracking**: Save each interview attempt with Q&A logs, timestamps, and duration.
-- **AI Evaluation**: Evaluate answers with scores (1–10), strengths, and areas to improve using Gemini API.
-- **Analytics & Visualization**: View score breakdowns, bar and radar charts for skills, and export sessions as PDFs.
-- **User Dashboard**: (Planned for Phase 9) Track job profiles, interview attempts, and progress over time.
-- **Security**: JWT blacklisting, rate limiting, input validation, and CORS restrictions.
+NeuroHire offers a range of features to help you prepare for job interviews effectively:
 
-## Tech Stack
+- **AI-Driven Mock Interviews**: Engage in realistic interview scenarios powered by AI.
+- **Vapi.ai Voice Integration**: Experience voice interactions to mimic real interview conditions.
+- **Gemini Questions**: Access a wide range of interview questions, with OpenAI as a fallback for additional queries.
+- **Feedback Mechanism**: Receive constructive feedback on your performance to improve your skills.
+- **User Profiles**: Create and manage your profile to track your progress.
+- **Analytics and Charts**: Visualize your performance metrics to identify strengths and areas for improvement.
+- **PDF Exports**: Export your interview results and feedback in PDF format for easy sharing and review.
 
-### Frontend
+## Technologies Used
 
-- **Next.js**: Server-side rendering and static site generation
-- **Tailwind CSS**: Utility-first styling
-- **TypeScript**: Type safety
-- **Redux Toolkit & RTK Query**: State management and API calls
-- **React Router**: Client-side routing (integrated with Next.js)
-- **Redux Persist**: Persistent state storage
-- **Recharts**: Data visualization for charts
-- **React-PDF**: PDF generation for session exports
+NeuroHire is built using the following technologies:
 
-### Backend
+- **Next.js**: A powerful React framework for server-side rendering and static site generation.
+- **Node.js**: JavaScript runtime for building scalable network applications.
+- **MongoDB**: NoSQL database for storing user profiles and interview data.
+- **Express**: Web application framework for Node.js to build APIs.
+- **Mongoose**: ODM library for MongoDB and Node.js.
+- **JWT Authentication**: Secure user authentication mechanism.
+- **React.js**: JavaScript library for building user interfaces.
+- **Vapi.ai**: AI voice interaction service.
 
-- **Node.js & Express.js**: RESTful API server
-- **Socket.io**: Real-time communication (for future enhancements)
-- **MongoDB & Mongoose**: NoSQL database and schema management
-- **JWT**: Authentication with access and refresh tokens
-- **Passport.js**: Google OAuth2 integration
-- **Helmet, Joi, CORS**: Security and input validation
+## Installation
 
-### AI & Voice
-
-- **Google Gemini API**: Question generation and answer evaluation
-- **OpenAI API**: Fallback for AI services
-- **Vapi.ai SDK**: Real-time voice interviews
-
-### DevOps & Testing
-
-- **Docker**: Containerization
-- **GitHub Actions**: CI/CD pipeline for linting, testing, and deployment
-- **Vercel**: Frontend deployment
-- **Railway/Render**: Backend deployment
-- **Jest, Supertest, React Testing Library**: Unit and API testing
-
-## Project Structure
-
-```
-ai-mock-interview-platform/
-├── client/                 # Next.js frontend
-│   ├── src/
-│   │   ├── components/     # Reusable React components (e.g., JobProfileForm, ProtectedRoute)
-│   │   ├── features/       # Redux slices (e.g., authSlice)
-│   │   ├── pages/          # Next.js pages (e.g., login, job-profiles, interview)
-│   │   ├── services/       # RTK Query API definitions
-│   │   ├── styles/         # Tailwind CSS
-│   │   └── store.ts        # Redux store configuration
-├── server/                 # Node.js backend
-│   ├── src/
-│   │   ├── models/         # Mongoose schemas (e.g., User, JobProfile, InterviewSession)
-│   │   ├── routes/         # Express routes (e.g., auth, jobProfiles, interviewSessions)
-│   │   ├── middleware/     # Authentication and validation middleware
-│   │   ├── utils/          # Utility functions (e.g., JWT, AI services)
-│   │   └── index.ts        # Server entry point
-├── .github/                # GitHub Actions workflows
-├── Dockerfile              # Docker configuration
-├── .gitignore              # Git ignore file
-└── README.md               # This file
-```
-
-## Getting Started
-
-### Prerequisites
-
-- **Node.js**: v20.x (LTS)
-- **MongoDB**: v7.x (local or Atlas)
-- **Docker**: For containerized deployment
-- **API Keys**:
-  - Google Gemini API
-  - OpenAI API
-  - Vapi.ai API
-  - Google OAuth2 (Client ID and Secret)
-
-### Installation
+To set up NeuroHire on your local machine, follow these steps:
 
 1. **Clone the Repository**:
-
    ```bash
-   git clone https://github.com/your-username/ai-mock-interview-platform.git
-   cd ai-mock-interview-platform
+   git clone https://github.com/harrymanoa/NeuroHire.git
    ```
 
-2. **Install Dependencies**:
-
-   **Frontend**:
-
+2. **Navigate to the Project Directory**:
    ```bash
-   cd client
+   cd NeuroHire
+   ```
+
+3. **Install Dependencies**:
+   ```bash
    npm install
    ```
 
-   **Backend**:
+4. **Set Up Environment Variables**: Create a `.env` file in the root directory and add your configuration settings.
 
+5. **Run the Application**:
    ```bash
-   cd ../server
-   npm install
-   ```
-
-### Environment Variables
-
-1. **Create `client/.env.local`**:
-
-   ```env
-   NEXT_PUBLIC_API_URL=http://localhost:5000
-   NEXT_PUBLIC_VAPI_API_KEY=your-vapi-api-key
-   ```
-
-2. **Create `server/.env`**:
-   ```env
-   MONGO_URI=mongodb://localhost:27017/mock-interview
-   PORT=5000
-   ACCESS_TOKEN_SECRET=your-access-token-secret
-   REFRESH_TOKEN_SECRET=your-refresh-token-secret
-   GOOGLE_CLIENT_ID=your-google-client-id
-   GOOGLE_CLIENT_SECRET=your-google-client-secret
-   GEMINI_API_KEY=your-gemini-api-key
-   OPENAI_API_KEY=your-openai-api-key
-   ```
-
-### Running the Application
-
-1. **Backend**:
-
-   ```bash
-   cd server
    npm run dev
    ```
 
-   The server will run on http://localhost:5000.
-
-2. **Frontend**:
-
-   ```bash
-   cd client
-   npm run dev
-   ```
-
-   The frontend will run on http://localhost:3000.
-
-3. **Docker (Optional)**:
-
-   Create a `Dockerfile` in the root:
-
-   ```dockerfile
-   FROM node:20
-   WORKDIR /app
-   COPY package*.json ./
-   COPY client ./client
-   COPY server ./server
-   RUN cd client && npm install && npm run build
-   RUN cd server && npm install
-   EXPOSE 5000 3000
-   CMD ["sh", "-c", "cd server && npm run start & cd client && npm run start"]
-   ```
-
-   Build and run:
-
-   ```bash
-   docker build -t ai-mock-interview .
-   docker run -p 3000:3000 -p 5000:5000 ai-mock-interview
-   ```
+Now, you can access the application at `http://localhost:3000`.
 
 ## Usage
 
-1. **Register/Login**: Sign up with email/password or Google OAuth2.
-2. **Create Job Profile**: Add a job profile with role, company, skills, and experience level.
-3. **Generate Questions**: Use the AI to generate 8–10 questions for the profile.
-4. **Start Interview**: Conduct a voice-based mock interview with Vapi.ai, answering questions one at a time.
-5. **Evaluate Answers**: Get AI-driven feedback with scores, strengths, and areas to improve.
-6. **View Analytics**: Check score breakdowns, bar/radar charts, and export session summaries as PDFs.
-7. **Retry Interview**: Start a new session to improve your performance.
+Once the application is running, you can create a user profile. After that, you can start your mock interviews. The platform will guide you through the process, providing questions and feedback based on your responses.
 
-## API Endpoints
-
-| Method | Endpoint                             | Description                          |
-| ------ | ------------------------------------ | ------------------------------------ |
-| POST   | `/auth/register`                     | Register a new user                  |
-| POST   | `/auth/login`                        | Login with credentials               |
-| GET    | `/auth/refresh-token`                | Refresh access token                 |
-| GET    | `/auth/google`                       | Initiate Google OAuth2               |
-| POST   | `/api/job-profiles`                  | Create a job profile                 |
-| GET    | `/api/job-profiles`                  | List user's job profiles             |
-| GET    | `/api/job-profiles/:id`              | Get specific job profile             |
-| PUT    | `/api/job-profiles/:id`              | Update a job profile                 |
-| DELETE | `/api/job-profiles/:id`              | Delete a job profile                 |
-| POST   | `/api/generate-questions/:id`        | Generate questions for a job profile |
-| POST   | `/api/interview-sessions/:id`        | Create a new interview session       |
-| GET    | `/api/interview-sessions/:id`        | Get detailed session                 |
-| POST   | `/api/evaluate-answer/:sessionId`    | Evaluate session answers             |
-| GET    | `/api/interview-session/:id/summary` | Get session summary                  |
+1. **Create a Profile**: Fill in your details to set up your account.
+2. **Start Mock Interviews**: Choose the type of interview you want to practice.
+3. **Receive Feedback**: After each session, review the feedback provided to improve your performance.
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit changes (`git commit -m "Add your feature"`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
+We welcome contributions to NeuroHire. If you would like to contribute, please follow these steps:
 
-Please follow the Code of Conduct and ensure tests pass before submitting.
+1. **Fork the Repository**.
+2. **Create a New Branch**:
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
+
+3. **Make Your Changes**.
+4. **Commit Your Changes**:
+   ```bash
+   git commit -m "Add some feature"
+   ```
+
+5. **Push to the Branch**:
+   ```bash
+   git push origin feature/YourFeature
+   ```
+
+6. **Open a Pull Request**.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries or feedback, please reach out:
+
+- **Author**: [Harry Manoa](https://github.com/harrymanoa)
+- **Email**: harry.manoa@example.com
+
+## Releases
+
+For the latest releases, visit our [Releases](https://github.com/harrymanoa/NeuroHire/releases) section. Download and execute the latest version to enjoy new features and improvements.
+
+## Conclusion
+
+NeuroHire is your go-to platform for preparing for job interviews with confidence. With its AI-driven features and user-friendly interface, you can enhance your skills and approach interviews with ease. 
+
+We hope you find NeuroHire helpful in your job search journey. If you have any suggestions or need assistance, please don't hesitate to reach out.
+
+---
+
+Feel free to explore the code, contribute, and improve NeuroHire. Together, we can make interview preparation accessible and effective for everyone!
